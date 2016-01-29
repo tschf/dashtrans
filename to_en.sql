@@ -134,4 +134,49 @@ begin
 end;
 /
 
+--GDB_GER_HOSPITAL_INFO - CATEGORY
+delete from word_translation;
+load word_translation raw/GDB_HOSPITAL_INFO_CAT.csv
+
+begin
+
+    for trnsl in (
+        select *
+        from word_translation
+    )
+    loop
+
+        update GDB_GER_HOSPITAL_INFO
+        set category = trnsl.word_en
+        where category = trnsl.word_german;
+
+    end loop;
+
+
+end;
+/
+
+
+
+--GDB_GER_HOSPITAL_INFO - CATEGORY_TYP
+delete from word_translation;
+load word_translation raw/GDB_HOSPITAL_INFO_CAT_TYP.csv
+
+begin
+
+    for trnsl in (
+        select *
+        from word_translation
+    )
+    loop
+
+        update GDB_GER_HOSPITAL_INFO
+        set category_typ = trnsl.word_en
+        where category_typ = trnsl.word_german;
+
+    end loop;
+
+
+end;
+/
 exit
